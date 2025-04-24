@@ -23,9 +23,16 @@ with c:
     st.title('Alike')
     st.markdown('### Social matching, but smarter.')
 
-tab1, tab2, tab3 = st.tabs(['tab1', 'Ydata raport', 'D-Tale'])
+with st.sidebar:
 
-with tab3:
-    d = dtale.show(df)
-    st.write("Open D-Tale in a new tab:")
-    st.markdown(f"[Click here to explore your data]({d._main_url})")
+    st.markdown('### Look into your data:')
+
+    ydata_view, dtale_view = st.tabs(['Ydata raport', 'D-Tale'])
+
+    with ydata_view:
+        st.markdown('#### Ydata raport')
+
+    with dtale_view:
+        d = dtale.show(df)
+        st.write("Open D-Tale in a new tab:")
+        st.markdown(f"[Click here to explore your data]({d._main_url})")
