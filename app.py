@@ -5,12 +5,13 @@ from openai import OpenAI
 from hashlib import md5
 # from pycaret.clustering import load_model
 from audiorecorder import audiorecorder
-# from ydata_profiling import ProfileReport
+from ydata_profiling import ProfileReport
 from pydub import AudioSegment
 from io import BytesIO
 import json
 import plotly.express as px
 import dtale
+import streamlit.components.v1 as components
 # from qdrant_client import QdrantClient
 # from qdrant_client.models import PointStruct, Distance, VectorParams
 
@@ -22,17 +23,21 @@ l, c, r = st.columns([2,6,2])
 with c:
     st.title('Alike')
     st.markdown('### Social matching, but smarter.')
+    st.markdown("&nbsp;", unsafe_allow_html=True)
 
-with st.sidebar:
+main_page, explore = st.tabs(['Alike', 'Explore Your Data'])
 
-    st.markdown('### Look into your data:')
+# with main_page:
+    
 
-    ydata_view, dtale_view = st.tabs(['Ydata raport', 'D-Tale'])
 
-    with ydata_view:
-        st.markdown('#### Ydata raport')
+with explore:
+    d = dtale.show(df)
+    st.write("Open D-Tale in a new tab:")
+    st.markdown(f"[Click here to explore your data]({d._main_url})")
 
-    with dtale_view:
-        d = dtale.show(df)
-        st.write("Open D-Tale in a new tab:")
-        st.markdown(f"[Click here to explore your data]({d._main_url})")
+    st.markdown('#### Ydata report')
+    profile = ProfileReport(df, title="YData Profiling Report", explorative=True)
+    profile_html = profile.to_html()
+    components.html(profile_html, height=1000, scrolling=True)
+
