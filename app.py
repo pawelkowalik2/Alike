@@ -43,13 +43,13 @@ model = get_model()
 cluster_names_and_descriptions = get_cluster_names_and_descriptions()
 
 with explore:
-    d = dtale.show(all_df)
-    st.write("Open D-Tale in a new tab:")
-    st.markdown(f'''
-    <a href="{d._main_url}" title="If any issues occur, please refresh the page." target="_blank">
-        Click here to explore your data
-    </a>
-    ''', unsafe_allow_html=True)
+    # d = dtale.show(all_df)
+    # st.write("Open D-Tale in a new tab:")
+    # st.markdown(f'''
+    # <a href="{d._main_url}" title="If any issues occur, please refresh the page." target="_blank">
+    #     Click here to explore your data
+    # </a>
+    # ''', unsafe_allow_html=True)
 
     st.markdown('#### Ydata report')
     profile = ProfileReport(all_df, title="YData Profiling Report", explorative=True)
