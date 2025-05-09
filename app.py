@@ -1,16 +1,11 @@
 import streamlit as st
 import pandas as pd
-from dotenv import dotenv_values
 from pycaret.clustering import load_model, predict_model
 from ydata_profiling import ProfileReport
 import json
 import plotly.express as px
 import dtale
 import streamlit.components.v1 as components
-# from qdrant_client import QdrantClient
-# from qdrant_client.models import PointStruct, Distance, VectorParams
-
-env = dotenv_values('.env')
 
 MODEL_NAME = 'welcome_survey_clustering_pipeline_v2'
 
