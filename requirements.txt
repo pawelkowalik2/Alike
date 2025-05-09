@@ -1,0 +1,6 @@
+streamlit==1.45.0
+pandas==2.1.4
+plotly==5.24.1
+pycaret==3.3.2
+dtale==3.17.0
+ydata-profiling==4.6.4
