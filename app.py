@@ -4,7 +4,6 @@ from pycaret.clustering import load_model, predict_model
 from ydata_profiling import ProfileReport
 import json
 import plotly.express as px
-import dtale
 import streamlit.components.v1 as components
 
 MODEL_NAME = 'welcome_survey_clustering_pipeline_v2'
@@ -43,13 +42,6 @@ model = get_model()
 cluster_names_and_descriptions = get_cluster_names_and_descriptions()
 
 with explore:
-    # d = dtale.show(all_df)
-    # st.write("Open D-Tale in a new tab:")
-    # st.markdown(f'''
-    # <a href="{d._main_url}" title="If any issues occur, please refresh the page." target="_blank">
-    #     Click here to explore your data
-    # </a>
-    # ''', unsafe_allow_html=True)
 
     st.markdown('#### Ydata report')
     profile = ProfileReport(all_df, title="YData Profiling Report", explorative=True)
@@ -85,42 +77,42 @@ with main_page:
     st.metric("Liczba twoich znajomych", len(same_cluster_df))
 
     st.header("Osoby z grupy")
-fig = px.histogram(same_cluster_df.sort_values("age"), x="age")
-fig.update_layout(
-    title="Rozkład wieku w grupie",
-    xaxis_title="Wiek",
-    yaxis_title="Liczba osób",
-)
-st.plotly_chart(fig)
+    fig = px.histogram(same_cluster_df.sort_values("age"), x="age")
+    fig.update_layout(
+        title="Rozkład wieku w grupie",
+        xaxis_title="Wiek",
+        yaxis_title="Liczba osób",
+    )
+    st.plotly_chart(fig)
 
-fig = px.histogram(same_cluster_df, x="edu_level")
-fig.update_layout(
-    title="Rozkład wykształcenia w grupie",
-    xaxis_title="Wykształcenie",
-    yaxis_title="Liczba osób",
-)
-st.plotly_chart(fig)
+    fig = px.histogram(same_cluster_df, x="edu_level")
+    fig.update_layout(
+        title="Rozkład wykształcenia w grupie",
+        xaxis_title="Wykształcenie",
+        yaxis_title="Liczba osób",
+    )
+    st.plotly_chart(fig)
 
-fig = px.histogram(same_cluster_df, x="fav_animals")
-fig.update_layout(
-    title="Rozkład ulubionych zwierząt w grupie",
-    xaxis_title="Ulubione zwierzęta",
-    yaxis_title="Liczba osób",
-)
-st.plotly_chart(fig)
+    fig = px.histogram(same_cluster_df, x="fav_animals")
+    fig.update_layout(
+        title="Rozkład ulubionych zwierząt w grupie",
+        xaxis_title="Ulubione zwierzęta",
+        yaxis_title="Liczba osób",
+    )
+    st.plotly_chart(fig)
 
-fig = px.histogram(same_cluster_df, x="fav_place")
-fig.update_layout(
-    title="Rozkład ulubionych miejsc w grupie",
-    xaxis_title="Ulubione miejsce",
-    yaxis_title="Liczba osób",
-)
-st.plotly_chart(fig)
+    fig = px.histogram(same_cluster_df, x="fav_place")
+    fig.update_layout(
+        title="Rozkład ulubionych miejsc w grupie",
+        xaxis_title="Ulubione miejsce",
+        yaxis_title="Liczba osób",
+    )
+    st.plotly_chart(fig)
 
-fig = px.histogram(same_cluster_df, x="gender")
-fig.update_layout(
-    title="Rozkład płci w grupie",
-    xaxis_title="Płeć",
-    yaxis_title="Liczba osób",
-)
-st.plotly_chart(fig)
+    fig = px.histogram(same_cluster_df, x="gender")
+    fig.update_layout(
+        title="Rozkład płci w grupie",
+        xaxis_title="Płeć",
+        yaxis_title="Liczba osób",
+    )
+    st.plotly_chart(fig)
